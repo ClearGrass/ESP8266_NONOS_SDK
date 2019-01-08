@@ -26,6 +26,9 @@
 #include "at_custom.h"
 #include "user_interface.h"
 
+extern void ICACHE_FLASH_ATTR
+at_queryCmdNetClk(uint8_t id);
+
 #if ((SPI_FLASH_SIZE_MAP == 0) || (SPI_FLASH_SIZE_MAP == 1))
 #error "The flash map is not supported"
 #elif (SPI_FLASH_SIZE_MAP == 2)
@@ -143,6 +146,7 @@ at_exeCmdTest(uint8_t id)
 extern void at_exeCmdCiupdate(uint8_t id);
 at_funcationType at_custom_cmd[] = {
     {"+TEST", 5, at_testCmdTest, at_queryCmdTest, at_setupCmdTest, at_exeCmdTest},
+	{"+NETCLK", 7, NULL, at_queryCmdNetClk, NULL, NULL},
 #ifdef AT_UPGRADE_SUPPORT
     {"+CIUPDATE", 9,       NULL,            NULL,            NULL, at_exeCmdCiupdate}
 #endif
