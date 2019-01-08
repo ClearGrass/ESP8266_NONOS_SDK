@@ -28,6 +28,10 @@
 
 extern void ICACHE_FLASH_ATTR
 at_queryCmdNetClk(uint8_t id);
+extern void ICACHE_FLASH_ATTR
+at_setupCmdHttpConnect(uint8_t id, char *pPara);
+extern void ICACHE_FLASH_ATTR
+at_setupCmdHttpPost(uint8_t id, char *pPara);
 
 #if ((SPI_FLASH_SIZE_MAP == 0) || (SPI_FLASH_SIZE_MAP == 1))
 #error "The flash map is not supported"
@@ -147,6 +151,8 @@ extern void at_exeCmdCiupdate(uint8_t id);
 at_funcationType at_custom_cmd[] = {
     {"+TEST", 5, at_testCmdTest, at_queryCmdTest, at_setupCmdTest, at_exeCmdTest},
 	{"+NETCLK", 7, NULL, at_queryCmdNetClk, NULL, NULL},
+	{"+HTTPCONNECT", 12, NULL, NULL, at_setupCmdHttpConnect, NULL},
+	{"+HTTPPOST", 9, NULL, NULL, at_setupCmdHttpPost, NULL},
 #ifdef AT_UPGRADE_SUPPORT
     {"+CIUPDATE", 9,       NULL,            NULL,            NULL, at_exeCmdCiupdate}
 #endif
