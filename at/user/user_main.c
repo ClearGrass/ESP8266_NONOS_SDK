@@ -180,6 +180,7 @@ user_init(void)
 {
     char buf[128] = {0};
     at_customLinkMax = 5;
+    system_uart_swap();
     at_init();
 #ifdef ESP_AT_FW_VERSION
     if ((ESP_AT_FW_VERSION != NULL) && (os_strlen(ESP_AT_FW_VERSION) < 64)) {
